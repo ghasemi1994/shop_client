@@ -1,0 +1,9 @@
+.main_home_slider {
+    height: 200px;
+}
+
+@media (min-width: 1281px) {
+    .main_home_slider {
+        height: 400px;
+    }
+}
