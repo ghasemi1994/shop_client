@@ -7,8 +7,7 @@ export default function Home() {
       <Head>
         <title>فروشگاه لوازم آرایشی بیوتی | صفحه اصلی</title>
       </Head>
-     
-
+    
       <div className="mb-6">
         {/* <PupolarBrands /> */}
       </div>
