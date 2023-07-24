@@ -1,4 +1,4 @@
-import PupolarBrands from "@/components/layouts/Sliders/brands/PupolarBrands";
+import MainSlider from "@/components/layouts/Sliders/main/MainSlider";
 import Head from "next/head";
 
 export default function Home() {
@@ -7,10 +7,12 @@ export default function Home() {
       <Head>
         <title>فروشگاه لوازم آرایشی بیوتی | صفحه اصلی</title>
       </Head>
-    
-      <div className="mb-6">
-        {/* <PupolarBrands /> */}
-      </div>
+
+
+      {/* <MainSlider /> */}
+
+
+
     </>
   );
 }

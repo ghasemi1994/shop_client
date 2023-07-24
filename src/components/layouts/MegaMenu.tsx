@@ -2,10 +2,15 @@ import { Fragment, useState } from "react";
 import { Dialog, Popover, Tab, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
+  CheckBadgeIcon,
+  ChevronDownIcon,
   MagnifyingGlassIcon,
   ShoppingBagIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
+import { setClassNames } from "@/utils/helpers";
+import UserProfile from "./header/UserProfile";
+import Link from "next/link";
 
 const navigation = {
   categories: [
@@ -130,7 +135,7 @@ const navigation = {
         },
       ],
     },
- 
+
   ],
   pages: [
     { name: "Company", href: "#" },
@@ -138,9 +143,7 @@ const navigation = {
   ],
 };
 
-function classNames(...classes: any) {
-  return classes.filter(Boolean).join(" ");
-}
+
 
 export default function Example() {
   const [open, setOpen] = useState<boolean>(false);
@@ -192,7 +195,7 @@ export default function Example() {
                         <Tab
                           key={category.name}
                           className={({ selected }) =>
-                            classNames(
+                            setClassNames(
                               selected
                                 ? "border-indigo-600 text-indigo-600 "
                                 : "border-transparent text-gray-900",
@@ -270,21 +273,6 @@ export default function Example() {
                     ))}
                   </Tab.Panels>
                 </Tab.Group>
-                {/*
-                <div className="space-y-6 border-t border-gray-200 px-4 py-6">
-                  {navigation.pages.map((page) => (
-                    <div key={page.name} className="flow-root">
-                      <a
-                        href={page.href}
-                        className="-m-2 block p-2 font-medium text-gray-900"
-                      >
-                        {page.name}
-                      </a>
-                    </div>
-                  ))}
-                </div> 
-                */}
-
                 <div className="space-y-6 border-t border-gray-200 px-4 py-6">
                   <div className="flow-root">
                     <a
@@ -303,20 +291,6 @@ export default function Example() {
                     </a>
                   </div>
                 </div>
-                {/* 
-                <div className="border-t border-gray-200 px-4 py-6">
-                  <a href="#" className="-m-2 flex items-center p-2">
-                    <img
-                      src="https://tailwindui.com/img/flags/flag-canada.svg"
-                      alt=""
-                      className="block h-auto w-5 flex-shrink-0"
-                    />
-                    <span className="mr-3 block text-base font-medium text-gray-900">
-                      CAD
-                    </span>
-                    <span className="sr-only">, change currency</span>
-                  </a>
-                </div> */}
               </Dialog.Panel>
             </Transition.Child>
           </div>
@@ -324,15 +298,12 @@ export default function Example() {
       </Transition.Root>
 
       <header className="relative bg-white">
-        <p className="flex h-10 items-center justify-center bg-indigo-600 px-4 text-sm text-white sm:px-6 lg:px-8">
+        <p className="flex h-12 items-center justify-center bg-darkblue-800 px-4 text-sm text-white sm:px-6 lg:px-8">
           از بیوتی بخر جایزه ببر !
         </p>
 
-        <nav
-          aria-label="Top"
-          className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
-        >
-          <div className="border-b border-gray-200">
+        <nav aria-label="Top" className="w-full">
+          <div className="border-b border-gray-200 px-6">
             <div className="flex h-16 items-center">
               <button
                 type="button"
@@ -344,17 +315,18 @@ export default function Example() {
               </button>
 
               {/* Logo */}
-              <div className="ml-4 flex lg:ml-0">
-                <h4>Brand</h4>
+              <Link className="ml-4 flex lg:ml-0 text-sm items-center gap-1" href="/">
+                <CheckBadgeIcon className="h-5 w-5 text-blue-700" />
+                <h4>(فروشگاه اينرنتی لوازم آرایشی)</h4>
                 {/* <a href="#">
                   <span className="sr-only">Your Company</span>
                   <img
-                    className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                    alt=""
+                  className="h-8 w-auto"
+                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                  alt=""
                   />
                 </a> */}
-              </div>
+              </Link>
 
               {/* Flyout menus */}
               <Popover.Group className="hidden lg:mr-8 lg:block lg:self-stretch">
@@ -365,14 +337,16 @@ export default function Example() {
                         <>
                           <div className="relative flex">
                             <Popover.Button
-                              className={classNames(
+                              className={setClassNames(
                                 open
                                   ? "border-indigo-600 text-indigo-600"
                                   : "border-transparent text-gray-700 hover:text-gray-800",
-                                "relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out"
+                                "relative z-10 -mb-px flex items-center gap-1 border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out "
                               )}
                             >
+
                               {category.name}
+                              <ChevronDownIcon className="h-3 w-3" />
                             </Popover.Button>
                           </div>
 
@@ -467,75 +441,27 @@ export default function Example() {
                       )}
                     </Popover>
                   ))}
-                  {/* 
-                  {navigation.pages.map((page) => (
-                    <a
-                      key={page.name}
-                      href={page.href}
-                      className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
-                    >
-                      {page.name}
-                    </a>
-                  ))} */}
+
                 </div>
               </Popover.Group>
 
-              <div className="mr-auto flex items-center">
-                <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6 lg:space-x-reverse">
-                  <a
-                    href="#"
-                    className="text-sm font-medium text-gray-700 hover:text-gray-800"
-                  >
-                    ورود
-                  </a>
-                  <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
-                  <a
-                    href="#"
-                    className="text-sm font-medium text-gray-700 hover:text-gray-800"
-                  >
-                    ثبت نام
-                  </a>
-                </div>
+              <div className="mr-auto flex items-center gap-4">
 
-                {/* <div className="hidden lg:ml-8 lg:mr-8 lg:flex">
-                  <a
-                    href="#"
-                    className="flex items-center text-gray-700 hover:text-gray-800"
-                  >
-                    <img
-                      src="https://tailwindui.com/img/flags/flag-canada.svg"
-                      alt=""
-                      className="block h-auto w-5 flex-shrink-0"
-                    />
-                    <span className="mr-3 block text-sm font-medium">CAD</span>
-                    <span className="sr-only">, change currency</span>
-                  </a>
-                </div> */}
-
-                {/* Search */}
-                <div className="flex lg:mr-6">
-                  <a href="#" className="p-2 text-gray-400 hover:text-gray-500">
-                    <span className="sr-only">Search</span>
-                    <MagnifyingGlassIcon
-                      className="h-6 w-6"
-                      aria-hidden="true"
-                    />
-                  </a>
+                <div>
+                  <UserProfile />
                 </div>
 
                 {/* Cart */}
-                <div className="mr-4 flow-root">
-                  <a href="#" className="group -m-2 flex items-center p-2">
-                    <ShoppingBagIcon
-                      className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-                      aria-hidden="true"
-                    />
-                    <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                      0
+                <div>
+                  <Link href="/checkout/cart" className="flex items-center group">
+                    <ShoppingBagIcon className="h-6 w-6  text-gray-500 group-hover:text-gray-800" />
+                    <span className="ml-2 text-sm font-medium text-gray-500 group-hover:text-gray-800">
+                      3
                     </span>
-                    <span className="sr-only">items in cart, view bag</span>
-                  </a>
+                  </Link>
                 </div>
+
+
               </div>
             </div>
           </div>
